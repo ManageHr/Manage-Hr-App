@@ -17,8 +17,8 @@ class HorasExtraRepository(private val jdbc: JdbcTemplate) {
     private val mapper = RowMapper { rs, _ ->
         HorasExtraModel(
             idHorasExtra = rs.getLong("idHorasExtra"),
-            descrip      = rs.getString("descrip"),
-            fecha        = rs.getDate("fecha").toLocalDate(),
+            descripcion      = rs.getString("descripcion"),
+            fecha        = rs.getDate("fecha"),
             nHorasExtra  = rs.getInt("nHorasExtra"),
             tipoHorasId  = rs.getLong("tipoHorasid"),
             contratoId   = rs.getLong("contratoId")
@@ -34,14 +34,14 @@ class HorasExtraRepository(private val jdbc: JdbcTemplate) {
 
     fun create(req: CreateHorasExtraRequest): Long {
         val sql = """
-            INSERT INTO horasextra (descrip, fecha, nHorasExtra, tipoHorasid, contratoId)
+            INSERT INTO horasextra (descripcion, fecha, nHorasExtra, tipoHorasid, contratoId)
             VALUES (?, ?, ?, ?, ?)
         """.trimIndent()
 
         val kh: KeyHolder = GeneratedKeyHolder()
         jdbc.update({ con ->
             val ps: PreparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
-            ps.setString(1, req.descrip)
+            ps.setString(1, req.descripcion)
             ps.setDate(2, java.sql.Date.valueOf(req.fecha))
             ps.setInt(3, req.nHorasExtra)
             ps.setLong(4, req.tipoHorasId)
@@ -57,12 +57,12 @@ class HorasExtraRepository(private val jdbc: JdbcTemplate) {
     fun update(id: Long, req: UpdateHorasExtraRequest): Int {
         val sql = """
             UPDATE horasextra
-               SET descrip = ?, fecha = ?, nHorasExtra = ?, tipoHorasid = ?, contratoId = ?
+               SET descripcion = ?, fecha = ?, nHorasExtra = ?, tipoHorasid = ?, contratoId = ?
              WHERE idHorasExtra = ?
         """.trimIndent()
         return jdbc.update(
             sql,
-            req.descrip,
+            req.descripcion,
             java.sql.Date.valueOf(req.fecha),
             req.nHorasExtra,
             req.tipoHorasId,
