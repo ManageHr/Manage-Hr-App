@@ -17,7 +17,7 @@ class HorasExtraService(private val jdbcTemplate: JdbcTemplate) {
             descripcion    = rs.getString("descripcion"),
             fecha          = rs.getTimestamp("fecha"),
             nHorasExtra    = rs.getInt("nHorasExtra"),
-            tipoHorasid = rs.getLong("tipoHorasid"),
+            tipoHorasId = rs.getLong("tipoHorasId"),
             contratoId     = rs.getLong("contratoId")
         )
     }
