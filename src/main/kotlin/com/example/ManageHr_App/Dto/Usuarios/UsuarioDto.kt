@@ -5,9 +5,10 @@ import java.sql.Date
 class UsuarioDto(
     private var numDocumento: Long,
     private var primerNombre: String,
-    private var segundoNombre: String,
+    private var segundoNombre: String?,
     private var primerApellido: String,
-    private var segundoApellido: String,
+    private var segundoApellido: String?,
+    private var password: String,
     private var fechaNac: Date,
     private var numHijos: Byte?,
     private var contactoEmergencia: String,
@@ -15,28 +16,31 @@ class UsuarioDto(
     private var email: String,
     private var direccion: String,
     private var telefono: String,
-    private var nacionalidadId: Int?,
+    private var nacionalidadId: Int,
     private var epsCodigo: String,
-    private var generoId: Int?,
-    private var tipoDocumentoId: Int?,
-    private var estadoCivilId: Int?,
-    private var pensionesCodigo: String
+    private var generoId: Int,
+    private var tipoDocumentoId: Int,
+    private var estadoCivilId: Int,
+    private var pensionesCodigo: String,
+    private var usersId: Long
 ) {
-    // Puedes agregar getters y setters si quieres acceso controlado
-    fun getNumdocumento() = numDocumento
-    fun setNumdocumento(value: Long) { numDocumento = value }
+    fun getNumDocumento() = numDocumento
+    fun setNumDocumento(value: Long) { numDocumento = value }
 
     fun getPrimerNombre() = primerNombre
     fun setPrimerNombre(value: String) { primerNombre = value }
 
     fun getSegundoNombre() = segundoNombre
-    fun setSegundoNombre(value: String) { segundoNombre = value }
+    fun setSegundoNombre(value: String?) { segundoNombre = value }
 
     fun getPrimerApellido() = primerApellido
     fun setPrimerApellido(value: String) { primerApellido = value }
 
     fun getSegundoApellido() = segundoApellido
-    fun setSegundoApellido(value: String) { segundoApellido = value }
+    fun setSegundoApellido(value: String?) { segundoApellido = value }
+
+    fun getPassword() = password
+    fun setPassword(value: String) { password = value }
 
     fun getFechaNac() = fechaNac
     fun setFechaNac(value: Date) { fechaNac = value }
@@ -60,20 +64,23 @@ class UsuarioDto(
     fun setTelefono(value: String) { telefono = value }
 
     fun getNacionalidadId() = nacionalidadId
-    fun setNacionalidadId(value: Int?) { nacionalidadId = value }
+    fun setNacionalidadId(value: Int) { nacionalidadId = value }
 
     fun getEpsCodigo() = epsCodigo
     fun setEpsCodigo(value: String) { epsCodigo = value }
 
     fun getGeneroId() = generoId
-    fun setGeneroId(value: Int?) { generoId = value }
+    fun setGeneroId(value: Int) { generoId = value }
 
     fun getTipoDocumentoId() = tipoDocumentoId
-    fun setTipoDocumentoId(value: Int?) { tipoDocumentoId = value }
+    fun setTipoDocumentoId(value: Int) { tipoDocumentoId = value }
 
     fun getEstadoCivilId() = estadoCivilId
-    fun setEstadoCivilId(value: Int?) { estadoCivilId = value }
+    fun setEstadoCivilId(value: Int) { estadoCivilId = value }
 
     fun getPensionesCodigo() = pensionesCodigo
     fun setPensionesCodigo(value: String) { pensionesCodigo = value }
+
+    fun getUsersId() = usersId
+    fun setUsersId(value: Long) { usersId = value }
 }
