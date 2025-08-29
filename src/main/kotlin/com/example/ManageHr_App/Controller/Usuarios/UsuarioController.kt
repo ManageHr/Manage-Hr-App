@@ -12,14 +12,14 @@ class UsuarioController {
     @Autowired
     lateinit var usuariosServices: UsuariosServices
 
-    // GET ALL
+
     @GetMapping
     fun obtenerUsuarios(): ResponseEntity<List<UsuarioDto>> {
         val usuarios = usuariosServices.obtenerUsuarios()
         return ResponseEntity(usuarios, HttpStatus.OK)
     }
 
-    // GET BY ID
+
     @GetMapping("/{id}")
     fun obtenerUsuarioPorId(@PathVariable id: Long): ResponseEntity<UsuarioDto> {
         val usuario = usuariosServices.obtenerUsuarioPorId(id)
@@ -30,7 +30,7 @@ class UsuarioController {
         }
     }
 
-    // POST
+
     @PostMapping
     fun crearUsuario(@RequestBody usuario: UsuarioDto): ResponseEntity<String> {
         val filas = usuariosServices.crearUsuario(usuario)
@@ -41,7 +41,7 @@ class UsuarioController {
         }
     }
 
-    // PUT
+
     @PutMapping("/{id}")
     fun actualizarUsuario(@PathVariable id: Long, @RequestBody usuario: UsuarioDto): ResponseEntity<String> {
         val filas = usuariosServices.actualizarUsuario(id, usuario)
@@ -52,7 +52,7 @@ class UsuarioController {
         }
     }
 
-    // DELETE
+
     @DeleteMapping("/{id}")
     fun eliminarUsuario(@PathVariable id: Long): ResponseEntity<String> {
         val filas = usuariosServices.eliminarUsuario(id)

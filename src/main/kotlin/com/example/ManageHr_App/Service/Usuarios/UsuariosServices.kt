@@ -11,7 +11,7 @@ class UsuariosServices {
     @Autowired
     lateinit var jdbcTemplate: JdbcTemplate
 
-    // --- Mapeo de ResultSet a UsuarioDto ---
+
     private fun mapRow(rs: ResultSet): UsuarioDto {
         return UsuarioDto(
             numDocumento = rs.getLong("numDocumento"),
