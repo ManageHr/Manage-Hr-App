@@ -1,7 +1,8 @@
 package com.example.ManageHr_App.Controller.Vacantes
 
-import com.managehr.managehr.Models.VacantesDto
-import com.managehr.managehr.Services.VacantesService
+
+import com.example.ManageHr_App.Dto.Vacantes.VacantesDto
+import com.example.ManageHr_App.Service.Vacantes.VacantesService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import kotlin.to

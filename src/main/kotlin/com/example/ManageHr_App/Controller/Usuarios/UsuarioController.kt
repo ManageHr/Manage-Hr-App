@@ -1,6 +1,8 @@
 package com.example.ManageHr_App.Usuarios
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -12,34 +14,52 @@ class UsuarioController {
 
     // GET ALL
     @GetMapping
-    fun obtenerUsuarios(): List<UsuarioDto> {
-        return usuariosServices.obtenerUsuarios()
+    fun obtenerUsuarios(): ResponseEntity<List<UsuarioDto>> {
+        val usuarios = usuariosServices.obtenerUsuarios()
+        return ResponseEntity(usuarios, HttpStatus.OK)
     }
 
     // GET BY ID
     @GetMapping("/{id}")
-    fun obtenerUsuarioPorId(@PathVariable id: Long): UsuarioDto? {
-        return usuariosServices.obtenerUsuarioPorId(id)
+    fun obtenerUsuarioPorId(@PathVariable id: Long): ResponseEntity<UsuarioDto> {
+        val usuario = usuariosServices.obtenerUsuarioPorId(id)
+        return if (usuario != null) {
+            ResponseEntity(usuario, HttpStatus.OK)
+        } else {
+            ResponseEntity(HttpStatus.NOT_FOUND)
+        }
     }
 
     // POST
     @PostMapping
-    fun crearUsuario(@RequestBody usuario: UsuarioDto): String {
+    fun crearUsuario(@RequestBody usuario: UsuarioDto): ResponseEntity<String> {
         val filas = usuariosServices.crearUsuario(usuario)
-        return if (filas > 0) "Usuario creado con éxito" else "Error al crear usuario"
+        return if (filas > 0) {
+            ResponseEntity("Usuario creado con éxito", HttpStatus.CREATED)
+        } else {
+            ResponseEntity("Error al crear usuario", HttpStatus.BAD_REQUEST)
+        }
     }
 
     // PUT
     @PutMapping("/{id}")
-    fun actualizarUsuario(@PathVariable id: Long, @RequestBody usuario: UsuarioDto): String {
+    fun actualizarUsuario(@PathVariable id: Long, @RequestBody usuario: UsuarioDto): ResponseEntity<String> {
         val filas = usuariosServices.actualizarUsuario(id, usuario)
-        return if (filas > 0) "Usuario actualizado con éxito" else "Usuario no encontrado"
+        return if (filas > 0) {
+            ResponseEntity("Usuario actualizado con éxito", HttpStatus.OK)
+        } else {
+            ResponseEntity("Usuario no encontrado", HttpStatus.NOT_FOUND)
+        }
     }
 
     // DELETE
     @DeleteMapping("/{id}")
-    fun eliminarUsuario(@PathVariable id: Long): String {
+    fun eliminarUsuario(@PathVariable id: Long): ResponseEntity<String> {
         val filas = usuariosServices.eliminarUsuario(id)
-        return if (filas > 0) "Usuario eliminado con éxito" else "Usuario no encontrado"
+        return if (filas > 0) {
+            ResponseEntity("Usuario eliminado con éxito", HttpStatus.OK)
+        } else {
+            ResponseEntity("Usuario no encontrado", HttpStatus.NOT_FOUND)
+        }
     }
 }

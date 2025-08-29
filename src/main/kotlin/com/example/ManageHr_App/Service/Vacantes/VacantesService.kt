@@ -1,6 +1,7 @@
 package com.example.ManageHr_App.Service.Vacantes
 
-import com.managehr.managehr.Models.VacantesDto
+
+import com.example.ManageHr_App.Dto.Vacantes.VacantesDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
