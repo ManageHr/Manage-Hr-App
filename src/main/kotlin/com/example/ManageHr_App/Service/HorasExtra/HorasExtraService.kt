@@ -54,7 +54,7 @@ class HorasExtraService(private val jdbcTemplate: JdbcTemplate) {
             VALUES (?, ?, ?, ?, ?)
         """.trimIndent()
 
-        val keyHolder = GeneratedKeyHolder()
+            val keyHolder = GeneratedKeyHolder()
 
         jdbcTemplate.update({ conn ->
             val ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
