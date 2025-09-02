@@ -1,6 +1,5 @@
 package com.example.ManageHr_App.Service.HojasVida
 
-import com.example.ManageHr_App.Dto.HojasVida.EstudiosDto
 import com.example.ManageHr_App.Dto.HojasVida.ExperienciaLaboralDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
