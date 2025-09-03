@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/horasextra")
 class HorasExtraController(private val service: HorasExtraService) {
 
-    // Obtener todas las horas extra
     @GetMapping
     fun getAll(): ResponseEntity<List<HorasExtraDto>> {
         val result = service.findAll()
         return ResponseEntity.ok(result)
     }
 
-    // Obtener por id
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Int): ResponseEntity<HorasExtraDto> {
         val horasExtra = service.findById(id)
@@ -24,7 +22,6 @@ class HorasExtraController(private val service: HorasExtraService) {
         else ResponseEntity.notFound().build()
     }
 
-    // Crear
     @PostMapping
     fun create(@RequestBody dto: HorasExtraDto): ResponseEntity<HorasExtraDto> {
         val id = service.create(dto)
@@ -32,7 +29,6 @@ class HorasExtraController(private val service: HorasExtraService) {
         else ResponseEntity.badRequest().build()
     }
 
-    // Actualizar
     @PutMapping("/{id}")
     fun update(@PathVariable id: Int, @RequestBody dto: HorasExtraDto): ResponseEntity<String> {
         val rows = service.update(id, dto)
@@ -40,7 +36,6 @@ class HorasExtraController(private val service: HorasExtraService) {
         else ResponseEntity.notFound().build()
     }
 
-    // Eliminar
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Int): ResponseEntity<String> {
         val rows = service.delete(id)
