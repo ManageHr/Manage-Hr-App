@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.validation.Valid
-import kotlin.time.Duration.Companion.milliseconds
 
 @RestController
 @RequestMapping("/api/hojas-de-vida")
@@ -35,7 +33,7 @@ class HojasVidaController {
         }
     }
     @PostMapping
-    fun crearCV(@Valid @RequestBody hojasVidaDto: HojasVidaDto): ResponseEntity<Any>{
+    fun crearCV(@RequestBody hojasVidaDto: HojasVidaDto): ResponseEntity<Any>{
         var mensaje:String
 
         return try {
@@ -50,7 +48,7 @@ class HojasVidaController {
         }
     }
     @PutMapping("/{id}")
-    fun actualizarHojadevida(@PathVariable id:Long,@Valid @RequestBody hojasVidaDto: HojasVidaDto):ResponseEntity<Any>{
+    fun actualizarHojadevida(@PathVariable id:Long, @RequestBody hojasVidaDto: HojasVidaDto):ResponseEntity<Any>{
         return try{
             val filas = hojasVidaService.update(id,hojasVidaDto)
             if (filas>0){
