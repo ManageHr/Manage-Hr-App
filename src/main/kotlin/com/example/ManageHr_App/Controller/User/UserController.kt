@@ -34,6 +34,16 @@ class UserController {
         }
     }
 
+    @GetMapping("/email/{email}")
+    fun obtenerPorEmail(@PathVariable email: String): ResponseEntity<Any> {
+        val user = userService.getByEmail(email)
+        return if (user != null) {
+            ResponseEntity.ok(user)
+        } else {
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado")
+        }
+    }
+
     @PostMapping
     fun crearUsuario(@RequestBody user: UserDto): ResponseEntity<Any> {
         val filasAfectadas = userService.create(user)
